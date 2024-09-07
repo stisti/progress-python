@@ -2,6 +2,8 @@ import sys
 import time
 import threading
 
+STOPPING = False
+
 class ByteCounter:
     def __init__(self):
         self.byte_count = 0
@@ -23,13 +25,19 @@ class ByteCounter:
             return self.byte_count, elapsed_time, speed
 
 def print_stats(counter):
-    while True:
-        time.sleep(1)
-        bytes_count, elapsed_time, speed = counter.get_stats()
-        sys.stderr.write(f"\rBytes: {bytes_count}, Time: {elapsed_time:.2f}s, Speed: {speed:.2f} B/s")
-        sys.stderr.flush()
+    try:
+        while True:
+            time.sleep(1)
+            bytes_count, elapsed_time, speed = counter.get_stats()
+            sys.stderr.write(f"\rBytes: {bytes_count}, Time: {elapsed_time:.2f}s, Speed: {speed:.2f} B/s")
+            sys.stderr.flush()
+            if STOPPING:
+                break
+    except KeyboardInterrupt:
+        pass
 
 def main():
+    global STOPPING
     counter = ByteCounter()
     stats_thread = threading.Thread(target=print_stats, args=(counter,), daemon=True)
     stats_thread.start()
@@ -42,6 +50,8 @@ def main():
         sys.stdout.buffer.write(chunk)
         sys.stdout.buffer.flush()
 
+    STOPPING = True
+    stats_thread.join()
     sys.stderr.write("\n")
 
 if __name__ == "__main__":

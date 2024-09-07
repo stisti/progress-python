@@ -12,5 +12,6 @@ dependencies = []
 
 [project.scripts]
 progress = "progress.progress:main"
-[project.entry-points."console_scripts"]
-progress = "progress.progress:main"
+
+[project.optional-dependencies]
+dev = ["pytest"]
