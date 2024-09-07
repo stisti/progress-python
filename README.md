@@ -20,8 +20,14 @@ python -m build
 1..1000000 | ForEach-Object { $_ } | python -m progress >nul
 ```
 
+## Install
+
+```
+python -m pip install dist/progress-0.0.1-py3-none-any.whl
+```
+
 ## Usage
 ```
-producer | python3 progress.py | consumer
+producer | progress | consumer
 ```
 

@@ -9,3 +9,8 @@ description = "A progress bar command line tool"
 readme = "README.md"
 requires-python = ">=3.6"
 dependencies = []
+
+[project.scripts]
+progress = "progress.progress:main"
+[project.entry-points."console_scripts"]
+progress = "progress.progress:main"
