@@ -4,6 +4,7 @@ import threading
 
 STOPPING = False
 
+
 class ByteCounter:
     def __init__(self):
         self.byte_count = 0
@@ -24,17 +25,21 @@ class ByteCounter:
             speed = self.byte_count / elapsed_time if elapsed_time > 0 else 0
             return self.byte_count, elapsed_time, speed
 
+
 def print_stats(counter):
     try:
         while True:
             time.sleep(1)
             bytes_count, elapsed_time, speed = counter.get_stats()
-            sys.stderr.write(f"\rBytes: {bytes_count}, Time: {elapsed_time:.2f}s, Speed: {speed:.2f} B/s")
+            sys.stderr.write(
+                f"\rBytes: {bytes_count}, Time: {elapsed_time:.2f}s, Speed: {speed:.2f} B/s"
+            )
             sys.stderr.flush()
             if STOPPING:
                 break
     except KeyboardInterrupt:
         pass
+
 
 def main():
     global STOPPING
@@ -53,6 +58,7 @@ def main():
     STOPPING = True
     stats_thread.join()
     sys.stderr.write("\n")
+
 
 if __name__ == "__main__":
     main()
