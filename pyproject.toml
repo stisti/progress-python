@@ -14,4 +14,4 @@ dependencies = []
 progress = "progress.progress:main"
 
 [project.optional-dependencies]
-dev = ["pytest", "black", "ruff"]
+dev = ["pytest~=8.3", "ruff~=0.6.0"]

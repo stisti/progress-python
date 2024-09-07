@@ -1,7 +1,6 @@
 import pytest
 import time
 from unittest.mock import patch, MagicMock
-from io import StringIO
 from progress.progress import ByteCounter, print_stats
 
 @pytest.fixture

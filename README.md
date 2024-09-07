@@ -17,8 +17,7 @@ python -m build
 ## Test
 
 ```
-black --check progress
-ruff check progress
+ruff check
 pytest
 1..1000000 | ForEach-Object { $_ } | python -m progress >nul
 ```
