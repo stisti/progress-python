@@ -7,7 +7,7 @@ name = "progress"
 version = "0.0.1"
 description = "A progress bar command line tool"
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.11"
 dependencies = []
 
 [project.scripts]
@@ -15,3 +15,8 @@ progress = "progress.progress:main"
 
 [project.optional-dependencies]
 dev = ["pytest~=8.3", "ruff~=0.6.0"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest-cov>=5.0.0",
+]
